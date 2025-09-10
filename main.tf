@@ -62,9 +62,9 @@ module "autoscaling" {
 #Application Load Balanceer
 module "blog_alb" {
   source = "terraform-aws-modules/alb/aws"
-  version = "~> 6.0"
+  version = "~> 9.8"
 
-  name                = "blog_alb"
+  name                = "blog-alb"
 
   load_balancer_type  = "application"
   
@@ -81,7 +81,7 @@ module "blog_alb" {
     }
   ]
 
-  http_tcp_listeners = [
+  listeners = [
     {
       port                = 80
       protocol            = "HTTP"
