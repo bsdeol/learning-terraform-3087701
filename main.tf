@@ -41,12 +41,12 @@ module "blog_autoscaling" {
   min_size            = var.asg_min
   max_size            = var.asg_max
   vpc_zone_identifier = module.blog_vpc.public_subnets
-  target_groups = [
-    {
-      arn  = module.blog_alb.target_group_arns[0]
-      port = 80   # use 8080 if your app listens on 8080
+  
+  traffic_source_attachments = {
+    alb = {
+      traffic_source_identifier = module.blog_alb.target_group_arns[0]
     }
-  ]
+  }
 
   security_groups     = [module.blog_sg.security_group_id]
   instance_type       = var.instance_type
