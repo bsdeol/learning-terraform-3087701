@@ -36,8 +36,8 @@ module "blog_vpc" {
 
 module "autoscaling" {
   source    = "terraform-aws-modules/autoscaling/aws"
-  version   = "9.0.1"
-  # insert the 1 required variable here
+  version   = "6.5.2"
+
   name      = "blog"
   min_size  = 1
   max_size  = 2
@@ -47,7 +47,7 @@ module "autoscaling" {
   secuirty_groups  = [module.blog_sg.security_group_id]
 
   image_id              = data.aws_ami.app_ami.id
-  instance_type    = var.instance_type
+  instance_type         = var.instance_type
 }
 
 #Application Load Balanceer
