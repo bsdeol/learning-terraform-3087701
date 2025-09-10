@@ -50,7 +50,12 @@ module "autoscaling" {
   instance_type         = var.instance_type
 
   # <-- Attach ASG to ALB target group(s)
-  target_group_arns = module.blog_alb.target_group_arns
+  target_groups = [
+    {
+      arn  = module.blog_alb.target_group_arns[0]
+      port = 80   # or 8080 if that’s what your app uses
+    }
+  ]
 }
 
 #Application Load Balanceer
