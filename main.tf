@@ -48,6 +48,9 @@ module "autoscaling" {
 
   image_id              = data.aws_ami.app_ami.id
   instance_type         = var.instance_type
+
+  # <-- Attach ASG to ALB target group(s)
+  target_group_arns = module.blog_alb.target_group_arns
 }
 
 #Application Load Balanceer
@@ -55,7 +58,7 @@ module "blog_alb" {
   source = "terraform-aws-modules/alb/aws"
   version = "~> 6.0"
 
-  name                = "blog-alb"
+  name                = "blog_alb"
 
   load_balancer_type  = "application"
   
