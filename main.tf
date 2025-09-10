@@ -33,7 +33,7 @@ module "blog_vpc" {
     Environment = "dev"
   }
 }
-
+/*
 module "autoscaling" {
   source    = "terraform-aws-modules/autoscaling/aws"
   version = "~> 9.0"
@@ -57,7 +57,7 @@ module "autoscaling" {
     }
   ]
 }
-
+*/
 #Application Load Balanceer
 module "blog_alb" {
   source = "terraform-aws-modules/alb/aws"
